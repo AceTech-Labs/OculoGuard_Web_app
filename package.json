@@ -24,5 +24,7 @@
   },
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "/Users/thidasjayawardane/Desktop/mustache/../OculoGuard_Web_app",
+  "author": "Thidas Jayawardane <thidas.2019717@iit.ac.lk>"
 }
