@@ -1,18 +1,18 @@
 import "../styles/globals.css";
 import Layout from "../components/layout/Layout";
-import awsmobile from "../src/aws-exports";
+import awsExports from "../src/aws-exports";
 import { Amplify } from "aws-amplify";
-import { AmplifyAuthenticator } from "@aws-amplify/ui-react";
+import { withAuthenticator, Authenticator } from "@aws-amplify/ui-react";
 
-Amplify.configure({ ...awsmobile, ssr: true });
+Amplify.configure({ ...awsExports, ssr: true });
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AmplifyAuthenticator>
+    <Authenticator>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </AmplifyAuthenticator>
+    </Authenticator>
   );
 }
 
