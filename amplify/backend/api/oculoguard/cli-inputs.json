@@ -3,10 +3,21 @@
   "serviceConfiguration": {
     "apiName": "oculoguard",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/Users/thidasjayawardane/Desktop/OculoGuard_Web_app/amplify/backend/api/oculoguard/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-ac7dd1f7-fcad-4f49-b19d-b511689739fb/amplify/backend/api/oculoguard/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "keyDescription": "api key description",
+      "expirationTime": 30
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }
