@@ -1,30 +1,33 @@
 {
-  "name": "oculoguard_web_app",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@aws-amplify/ui-react": "^2.11.0",
-    "aws-amplify": "^4.3.17",
-    "dotenv": "^16.0.0",
-    "next": "12.0.10",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "eslint": "8.9.0",
-    "eslint-config-next": "12.0.10",
-    "postcss": "^8.4.6",
-    "tailwindcss": "^3.0.23"
-  },
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "repository": "/Users/thidasjayawardane/Desktop/mustache/../OculoGuard_Web_app",
-  "author": "Thidas Jayawardane <thidas.2019717@iit.ac.lk>"
+  
+
+"dependencies": {
+  
+
+  
+
+"next": "^12.1.4",
+  
+
+  
+
+"react": "^18.0.0",
+  
+
+  
+
+"react-dom": "^18.0.0"
+  
+
+
+},
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+}
+
+
+
 }
