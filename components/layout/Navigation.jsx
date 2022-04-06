@@ -3,7 +3,7 @@ import Link from "next/link";
 const Navigation = () => {
   return (
     <nav>
-      <ul className="">
+      <ul className=" flex  justify-between items-center color-red bg-blue-500 ">
         <li>
           <Link href={"/"}>Home</Link>
         </li>

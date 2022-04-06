@@ -1,0 +1,18 @@
+type Record @model @auth(rules: [{allow: private}, {allow: owner}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  userID: ID! @index(name: "byUser")
+}
+
+type User @model @auth(rules: [{allow: owner}, {allow: private}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  name: String
+  ophthalmologistID: ID! @index(name: "byOphthalmologist")
+  Records: [Record] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+type Ophthalmologist @model @auth(rules: [{allow: private}, {allow: owner}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  name: String
+  Users: [User] @hasMany(indexName: "byOphthalmologist", fields: ["id"])
+}
+ 

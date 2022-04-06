@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "oculoguard",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/tmp/amplify-6805b2fa-da6f-423a-b1cf-f7676ee2d539/amplify/backend/api/oculoguard/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "keyDescription": "api key description",
+      "expirationTime": 30
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      },
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authoculoguard2251e9ec"
+      }
+    ]
+  }
+}
