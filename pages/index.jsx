@@ -1,33 +1,63 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Layout from "../components/layout/Layout";
 import { API, Auth } from "aws-amplify";
-import { listUsers, listOphthalmologists } from "../src/graphql/queries";
+import { listUsers, getOphthalmologist } from "../src/graphql/queries";
 import { createOphthalmologist } from "../src/graphql/mutations";
+import Button from "../components/buttons/Button";
+
+const defaultAuthMode = "AMAZON_COGNITO_USER_POOLS";
 
 export default function Home() {
   const [ophthalamologist, setOphthalamologist] = useState(null);
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getOphthalamologists().then((list) => {
-      console.log(list);
-      setUsers([...list]);
-      setOphthalamologist(list[0].name);
-    });
+    checkOphthalamologist();
   }, []);
 
   const signOut = async () => {
     await Auth.signOut();
   };
 
-  const getOphthalamologists = async () => {
-    const userData = await API.graphql({
-      query: listOphthalmologists,
-      authMode: "AMAZON_COGNITO_USER_POOLS",
+  const checkOphthalamologist = async (id) => {
+    const userInfo = await Auth.currentUserInfo();
+    console.log(userInfo);
+    const results = await API.graphql({
+      query: getOphthalmologist,
+      variables: {
+        id: userInfo.id,
+      },
+      authMode: defaultAuthMode,
     });
-    return userData.data.listOphthalmologists.items;
+    if (results.data.getOphthalmologist === null) {
+      setOphthalamologist("New Optha");
+    } else {
+      setOphthalamologist(results.data.getOphthalmologist.name);
+    }
+  };
+
+  const addOphthalamologist = async () => {
+    const userInfo = await Auth.currentUserInfo();
+    await API.graphql({
+      query: createOphthalmologist,
+      variables: {
+        input: {
+          id: userInfo.id,
+          name: "Demo_Account_Optho_",
+        },
+      },
+      authMode: defaultAuthMode,
+    });
+  };
+
+  const getAllUsers = async () => {
+    const results = await API.graphql({
+      query: listUsers,
+      authMode: defaultAuthMode,
+    });
+    console.log(results);
+    // setUsers([...results]);
   };
 
   return (
@@ -39,17 +69,25 @@ export default function Home() {
           <button onClick={signOut}>Sign Out</button>
         </div>
         <main>
-          <p>
+          <p className="bg-red text-center">
             User name {ophthalamologist == null ? "null" : ophthalamologist}
           </p>
-          <p>
-            users ={" "}
-            {users == null
-              ? "null"
-              : users.map((userHere) => {
-                  <h1>{userHere.name}</h1>;
-                })}
-          </p>
+          <div>
+            {users.map((user) => {
+              return <div key={user.id}>{user.name}</div>;
+            })}
+          </div>
+          <div className="flex justify-center py-7">
+            say my name
+            <div>
+              <Button onClick={addOphthalamologist}>
+                Add Ophthalamologist
+              </Button>
+            </div>
+            <div>
+              <Button onClick={getAllUsers}>List Users</Button>
+            </div>
+          </div>
           <div></div>
         </main>
       </div>

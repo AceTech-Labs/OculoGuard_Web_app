@@ -8,18 +8,14 @@ const Footer = () => {
   return (
     <Flex justifyContent="center" padding={tokens.space.small}>
       <Text>
-        Made with
-        <AiFillHeart />
-        by Team
-        <div>
-          <Image
-            className="bg-red rounded-full"
-            alt={"acetech labs"}
-            src={acetech}
-            width={45}
-            height={45}
-          />
-        </div>
+        Made with ♥️ by Team
+        <Image
+          className="bg-red rounded-full"
+          alt={"acetech labs"}
+          src={acetech}
+          width={45}
+          height={45}
+        />
       </Text>
     </Flex>
   );

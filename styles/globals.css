@@ -18,3 +18,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@layer components {
+  .nav-icon {
+    @apply text-secondary
+    flex flex-row items-center
+    justify-center;
+  }
+
+  .button {
+    @apply flex sm:inline-flex justify-center items-center bg-gradient-to-tr from-indigo-500 to-purple-500
+    hover:from-indigo-600 hover:to-purple-500 active:from-indigo-700 active:to-purple-600 focus-visible:ring
+    ring-indigo-300 text-white
+    font-semibold text-center rounded-md outline-none transition duration-300 px-5 py-2;
+  }
+}
