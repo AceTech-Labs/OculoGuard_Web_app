@@ -2,7 +2,7 @@ import React from 'react'
 import DiseaseFaq  from '../components/DiseaseFaq'
  import 'tailwindcss/tailwind.css'
 import Sidebar2 from '../components/Sidebar2'
- 
+ import Footer from '../components/Footer'
 
 
 
@@ -12,6 +12,10 @@ const guide = () => {
     <>
         
        <DiseaseFaq className=".float-left"/>
+       
+
+        <Footer/>
+       
     </>
   )
 }
