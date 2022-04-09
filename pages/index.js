@@ -1,6 +1,24 @@
+import 'tailwindcss/tailwind.css'
+import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
+import Sidebar2 from '../components/Sidebar2'
+import sidebar2 from '../components/Sidebar2'
+
+
+
 function HomePage(){
 
-    return <div className="text-3xl font-bold underline bg-red-50">Hello There</div>
+    return (<>
+                
+                HIIIIII
+    
+    
+    
+    </>
+            
+    
+    
+    )
 
 }
 
