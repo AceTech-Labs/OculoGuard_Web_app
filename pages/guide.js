@@ -13,8 +13,9 @@ const guide = () => {
         
        <DiseaseFaq className=".float-left"/>
        
-
-        <Footer/>
+        
+        <Footer />
+        
        
     </>
   )
