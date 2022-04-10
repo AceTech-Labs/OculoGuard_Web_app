@@ -2,38 +2,50 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateRecord = /* GraphQL */ `
-  subscription OnCreateRecord {
-    onCreateRecord {
+  subscription OnCreateRecord($owner: String) {
+    onCreateRecord(owner: $owner) {
       id
       userID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateRecord = /* GraphQL */ `
-  subscription OnUpdateRecord {
-    onUpdateRecord {
+  subscription OnUpdateRecord($owner: String) {
+    onUpdateRecord(owner: $owner) {
       id
       userID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteRecord = /* GraphQL */ `
-  subscription OnDeleteRecord {
-    onDeleteRecord {
+  subscription OnDeleteRecord($owner: String) {
+    onDeleteRecord(owner: $owner) {
       id
       userID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($owner: String) {
+    onCreateUser(owner: $owner) {
       id
       name
       ophthalmologistID
@@ -43,17 +55,26 @@ export const onCreateUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($owner: String) {
+    onUpdateUser(owner: $owner) {
       id
       name
       ophthalmologistID
@@ -63,17 +84,26 @@ export const onUpdateUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($owner: String) {
+    onDeleteUser(owner: $owner) {
       id
       name
       ophthalmologistID
@@ -83,17 +113,26 @@ export const onDeleteUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onCreateOphthalmologist = /* GraphQL */ `
-  subscription OnCreateOphthalmologist {
-    onCreateOphthalmologist {
+  subscription OnCreateOphthalmologist($owner: String) {
+    onCreateOphthalmologist(owner: $owner) {
       id
       name
       Users {
@@ -103,17 +142,26 @@ export const onCreateOphthalmologist = /* GraphQL */ `
           ophthalmologistID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateOphthalmologist = /* GraphQL */ `
-  subscription OnUpdateOphthalmologist {
-    onUpdateOphthalmologist {
+  subscription OnUpdateOphthalmologist($owner: String) {
+    onUpdateOphthalmologist(owner: $owner) {
       id
       name
       Users {
@@ -123,17 +171,26 @@ export const onUpdateOphthalmologist = /* GraphQL */ `
           ophthalmologistID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteOphthalmologist = /* GraphQL */ `
-  subscription OnDeleteOphthalmologist {
-    onDeleteOphthalmologist {
+  subscription OnDeleteOphthalmologist($owner: String) {
+    onDeleteOphthalmologist(owner: $owner) {
       id
       name
       Users {
@@ -143,11 +200,20 @@ export const onDeleteOphthalmologist = /* GraphQL */ `
           ophthalmologistID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;

@@ -115,7 +115,7 @@ export const schema = {
                     "name": "ophthalmologistID",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "Records": {
@@ -269,15 +269,6 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            },
-                            {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
@@ -288,20 +279,6 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
-                            },
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "us-east-1_oEs5LyGNF_Google"
-                                ],
-                                "operations": [
-                                    "read",
-                                    "create",
-                                    "update",
-                                    "delete"
-                                ]
                             }
                         ]
                     }
@@ -311,5 +288,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "d9f5a3a6e1ee3b842092eaddb6d09d35"
+    "version": "0e80b40f04788941c7a1da6fea523d55"
 };
