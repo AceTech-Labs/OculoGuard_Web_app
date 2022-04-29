@@ -1,7 +1,7 @@
 import React from 'react'
 import DiseaseFaq  from '../components/DiseaseFaq'
  import 'tailwindcss/tailwind.css'
-import Sidebar2 from '../components/Sidebar2'
+import Sidebar3 from '../components/Sidebar3'
  import Footer from '../components/Footer'
 
 
@@ -10,11 +10,26 @@ import Sidebar2 from '../components/Sidebar2'
 const guide = () => {
   return (
     <>
-        
-       <DiseaseFaq className=".float-left"/>
+     
+    
+<div className="flex items-center justify-center w-screen   h-screen   bg-orange-300 " >
+    <Sidebar3/>
+	<div className="w-screen   h-screen bg-white  p-4">
+    <DiseaseFaq/>
+		
+	</div>
+</div>
+
+  <Footer/>
+
+
+
+    
+    
+
        
         
-        <Footer />
+        
         
        
     </>

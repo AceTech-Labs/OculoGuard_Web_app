@@ -1,23 +1,27 @@
+import react from 'react'
 import 'tailwindcss/tailwind.css'
-import Navbar from '../components/Navbar'
-import Sidebar from '../components/Sidebar'
-import Sidebar2 from '../components/Sidebar2'
-import sidebar2 from '../components/Sidebar2'
+import Sidebar3 from '../components/Sidebar3'
+
+
 
 
 
 function HomePage(){
 
-    return (<>
+    return (
+        <>
+    <div>
+    <Sidebar3/>
+
+
+    </div>
+    <div>
+        SUUP    
+    </div>
                 
-                HIIIIII
-    
-    
-    
-    </>
             
-    
-    
+    </>
+        
     )
 
 }

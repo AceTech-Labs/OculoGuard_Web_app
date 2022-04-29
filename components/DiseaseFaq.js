@@ -6,13 +6,13 @@ const DiseaseFaq = () => {
   return (
     <>
     
-    <div className="max-w-screen-xl mx-auto p- mt-5">
-        <h2 className="text-3xl font-extrabold leading-9 border-b-2 border-blue-200 text-blue-700 mb-2">
+    <div className=" mx-auto p-0 mt-5">
+        <h2 className="text-3xl font-extrabold leading-9 border-b-2 border-blue-200 text-blue-900 mb-2">
             Oculo-Guard Guide
         </h2>
         <ul className="flex items-start gap-8 flex-wrap">
             <li className="w-2/5  ">
-                <p className="text-lg font-medium leading-6 text-blue-700 mb-2">
+                <p className="text-lg font-medium leading-6 text-blue-900 mb-2">
                     1. Select Patients
                     </p>                     
                     <p className="text-base leading-6 text-gray-500">
@@ -22,7 +22,7 @@ const DiseaseFaq = () => {
         
         
             <li className="w-2/5"> 
-                <p className="text-lg font-medium leading-6 text-blue-700 mb-2">
+                <p className="text-lg font-medium leading-6 text-blue-900 mb-2">
                     2. Select Disease for Diagnosis
                     </p>                     
                     <p className="text-base leading-6 text-gray-500">
@@ -33,7 +33,7 @@ const DiseaseFaq = () => {
         
         
             <li className="w-2/5">
-                <p className="text-lg font-medium leading-6 text-blue-700  mb-2">
+                <p className="text-lg font-medium leading-6 text-blue-900  mb-2">
                     3. Enter Relevant Samples 
                     </p>                     
                     <p className="text-base leading-6 text-gray-500">
@@ -43,7 +43,7 @@ const DiseaseFaq = () => {
         
         
             <li className="w-2/5">
-                <p className="text-lg font-medium leading-6 text-blue-700 ">
+                <p className="text-lg font-medium leading-6 text-blue-900 ">
                     4. Recieve Report
                     </p>                     
                     <p className="text-base leading-6 text-gray-500">
@@ -53,7 +53,7 @@ const DiseaseFaq = () => {
         
         
             <li className="w-2/5">
-                <p className="text-lg font-medium leading-6 text-blue-700  mb-2">
+                <p className="text-lg font-medium leading-6 text-blue-900  mb-2">
                     5. Add New Patients 
                     </p>                     
                     <p className="text-base leading-6 text-gray-500">
