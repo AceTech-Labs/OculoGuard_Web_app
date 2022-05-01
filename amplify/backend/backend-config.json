@@ -51,27 +51,14 @@
           ]
         }
       }
-    },
-    "diabeticPredictions": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "oculoprediction",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
-  "function": {
-    "oculoprediction": {
-      "build": true,
+  "function": {},
+  "storage": {
+    "recordimages": {
+      "service": "S3",
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+      "dependsOn": []
     }
   }
 }

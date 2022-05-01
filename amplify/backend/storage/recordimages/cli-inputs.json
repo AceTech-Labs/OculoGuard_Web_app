@@ -1,0 +1,14 @@
+{
+  "resourceName": "recordimages",
+  "policyUUID": "6e79763c",
+  "bucketName": "oculoguard779912de4bd749168d7d31173adae92c",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
