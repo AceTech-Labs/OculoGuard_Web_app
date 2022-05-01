@@ -1,9 +1,9 @@
 import Navigation from "./Navigation";
 
 const Layout = (props) => (
-  <div className=" bg-purple-300 h-screen">
-    <Navigation></Navigation>
-    <main>{props.children}</main>
+  <div className="flex flex-row">
+    <Navigation />
+    <div>{props.children}</div>
   </div>
 );
 
