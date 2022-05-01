@@ -5,7 +5,7 @@ const SignInHeader = () => {
 
   return (
     <Heading level={3} padding={`${tokens.space.xl} ${tokens.space.xl} 0`}>
-      Sign in to your Account
+      <span className={"text-secondary"}> Sign in to your Account</span>
     </Heading>
   );
 };

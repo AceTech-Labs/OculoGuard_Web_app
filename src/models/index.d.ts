@@ -28,7 +28,7 @@ export declare class Record {
 export declare class User {
   readonly id: string;
   readonly name?: string | null;
-  readonly ophthalmologistID: string;
+  readonly ophthalmologistID?: string | null;
   readonly Records?: (Record | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

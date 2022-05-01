@@ -11,6 +11,10 @@ export const createRecord = /* GraphQL */ `
       userID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -24,6 +28,10 @@ export const updateRecord = /* GraphQL */ `
       userID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -37,6 +45,10 @@ export const deleteRecord = /* GraphQL */ `
       userID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -55,11 +67,20 @@ export const createUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -78,11 +99,20 @@ export const updateUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -101,11 +131,20 @@ export const deleteUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -124,11 +163,20 @@ export const createOphthalmologist = /* GraphQL */ `
           ophthalmologistID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -147,11 +195,20 @@ export const updateOphthalmologist = /* GraphQL */ `
           ophthalmologistID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -170,11 +227,20 @@ export const deleteOphthalmologist = /* GraphQL */ `
           ophthalmologistID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
