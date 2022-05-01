@@ -23,7 +23,7 @@ a {
   .nav-icon {
     @apply text-secondary
     flex flex-row items-center
-    justify-center;
+    justify-center hover:text-red-500;
   }
 
   .button {
