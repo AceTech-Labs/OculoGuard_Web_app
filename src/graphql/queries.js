@@ -1,17 +1,99 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getRecord = /* GraphQL */ `
-  query GetRecord($id: ID!) {
-    getRecord(id: $id) {
+export const getS3Object = /* GraphQL */ `
+  query GetS3Object($id: ID!) {
+    getS3Object(id: $id) {
       id
-      userID
+      bucket
+      region
+      key
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+    }
+  }
+`;
+export const listS3Objects = /* GraphQL */ `
+  query ListS3Objects(
+    $filter: ModelS3ObjectFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listS3Objects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncS3Objects = /* GraphQL */ `
+  query SyncS3Objects(
+    $filter: ModelS3ObjectFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncS3Objects(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getRecord = /* GraphQL */ `
+  query GetRecord($id: ID!) {
+    getRecord(id: $id) {
+      id
+      userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      recordS3ObjectId
     }
   }
 `;
@@ -25,12 +107,27 @@ export const listRecords = /* GraphQL */ `
       items {
         id
         userID
+        details
+        diseaseType
+        isVerified
+        verifiedBy
+        S3Object {
+          id
+          bucket
+          region
+          key
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
+        recordS3ObjectId
       }
       nextToken
       startedAt
@@ -53,12 +150,27 @@ export const syncRecords = /* GraphQL */ `
       items {
         id
         userID
+        details
+        diseaseType
+        isVerified
+        verifiedBy
+        S3Object {
+          id
+          bucket
+          region
+          key
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
+        recordS3ObjectId
       }
       nextToken
       startedAt
@@ -70,27 +182,43 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -104,17 +232,32 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         name
+        age
         ophthalmologistID
         Records {
+          items {
+            id
+            userID
+            details
+            diseaseType
+            isVerified
+            verifiedBy
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            recordS3ObjectId
+          }
           nextToken
           startedAt
         }
+        address
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -137,17 +280,32 @@ export const syncUsers = /* GraphQL */ `
       items {
         id
         name
+        age
         ophthalmologistID
         Records {
+          items {
+            id
+            userID
+            details
+            diseaseType
+            isVerified
+            verifiedBy
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            recordS3ObjectId
+          }
           nextToken
           startedAt
         }
+        address
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -163,23 +321,28 @@ export const getOphthalmologist = /* GraphQL */ `
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -198,15 +361,27 @@ export const listOphthalmologists = /* GraphQL */ `
         id
         name
         Users {
+          items {
+            id
+            name
+            age
+            ophthalmologistID
+            address
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           nextToken
           startedAt
         }
+        location
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -230,15 +405,27 @@ export const syncOphthalmologists = /* GraphQL */ `
         id
         name
         Users {
+          items {
+            id
+            name
+            age
+            ophthalmologistID
+            address
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           nextToken
           startedAt
         }
+        location
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt

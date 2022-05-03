@@ -1,165 +1,288 @@
 import { useState } from "react";
 import { API, withSSRContext, Auth } from "aws-amplify";
 import Head from "next/head";
-import { getOphthalmologist } from "../src/graphql/queries";
+import { getOphthalmologist, getUser } from "../src/graphql/queries";
 import { Dialog } from "@headlessui/react";
 import {
   updateOphthalmologist,
-  createOphthalmologist,
+  updateUser,
+  createUser,
 } from "../src/graphql/mutations";
 import Button from "../components/buttons/Button";
 
-const Profile = ({ status, response, accountId }) => {
+const DefaultAuth = "AMAZON_COGNITO_USER_POOLS";
+
+const Profile = ({ status, response, accountId, accountType }) => {
+  console.log(status, response, accountId, accountType);
   const [state, setState] = useState(status);
-  const [name, setName] = useState(status == "EDIT" ? response.name : "");
-  const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState(status === "EDIT" ? response.name : "");
 
-  const editUserDetails = async (updatedName) => {
-    try {
-      const message = await API.graphql({
-        query: updateOphthalmologist,
-        variables: {
-          input: {
-            id: accountId,
-            name: updatedName,
+  const [location, setLocation] = useState(
+    status === "EDIT" ? (accountType === "O" ? response.location : "") : ""
+  );
+
+  const [age, setAge] = useState(
+    status === "EDIT" ? (accountType === "P" ? response.age : "") : ""
+  );
+  const [address, setAddress] = useState(
+    status === "EDIT" ? (accountType === "P" ? response.address : "") : ""
+  );
+
+  const editUserDetails = async () => {
+    if (accountType === "O") {
+      try {
+        const message = await API.graphql({
+          query: updateOphthalmologist,
+          variables: {
+            input: {
+              id: accountId,
+              name: name,
+            },
           },
-        },
-        authMode: "AMAZON_COGNITO_USER_POOLS",
-      });
-      console.log(message);
-
-      setState("ADD");
-    } catch (e) {
-      console.log(e);
+          authMode: DefaultAuth,
+        });
+        console.log(message);
+      } catch (e) {
+        console.log(e);
+      }
+    } else if (accountType === "P") {
+      try {
+        const message = await API.graphql({
+          query: updateUser,
+          variables: {
+            input: {
+              id: accountId,
+              name: name,
+            },
+          },
+          authMode: DefaultAuth,
+        });
+        console.log(message);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
-  const addUserDetails = async (updatedName) => {
-    try {
-      const message = await API.graphql({
-        query: createOphthalmologist,
-        variables: {
-          input: {
-            id: accountId,
-            name: updatedName,
+  const addUserDetails = async () => {
+    if (accountType === "P") {
+      try {
+        const message = await API.graphql({
+          query: createUser,
+          variables: {
+            input: {
+              id: accountId,
+              name: name,
+              age: parseInt(age),
+              address: address,
+            },
           },
-        },
-        authMode: "AMAZON_COGNITO_USER_POOLS",
-      });
-      console.log(message);
-    } catch (e) {
-      console.log(e);
+          authMode: DefaultAuth,
+        });
+        console.log(message);
+        setState("ADD");
+      } catch (e) {
+        console.log("error => ", e);
+      }
     }
   };
 
   const handleSubmission = async (event) => {
     event.preventDefault();
-    state === "EDIT" ? editUserDetails(name) : addUserDetails(name);
+    state === "EDIT" ? editUserDetails() : addUserDetails();
   };
 
   if (state === "ERROR") {
     return <>An Error Occured please Log In Again</>;
+  } else if (accountType === "P") {
+    return (
+      <div className="flex my-20">
+        <form className="w-full max-w-lg">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-first-name"
+              >
+                First Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="grid-first-name"
+                type="text"
+                placeholder="Jane"
+                defaultValue={state === "EDIT" ? name : ""}
+                required
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
+              {/* <p className="text-red-500 text-xs italic">
+              Please fill out this field.
+            </p> */}
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-last-name"
+              >
+                Last Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-last-name"
+                type="text"
+                placeholder="Doe"
+              />
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Address
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-password"
+                type="text"
+                placeholder="Address"
+                onChange={(event) => {
+                  setAddress(event.target.value);
+                }}
+                defaultValue={state === "EDIT" ? address : ""}
+              />
+              {/* <p className="text-gray-600 text-xs italic">
+              Make it as long and as crazy as you d like
+            </p> */}
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-2">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-city"
+              >
+                Age
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-city"
+                type="text"
+                placeholder="age"
+                onChange={(event) => {
+                  setAge(event.target.value);
+                }}
+                defaultValue={state === "EDIT" ? age : ""}
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              onClick={handleSubmission}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                {/* <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" /> */}
+              </span>
+              {state == "EDIT" ? (
+                <span>Save Details</span>
+              ) : (
+                <span>Save new Details</span>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    );
   }
 
   return (
-    <>
-      <Head>Profile</Head>
-      <Dialog open={isOpen} onClose={setIsOpen}>
-        <Dialog.Overlay className={"fixed inset-0 bg-black opacity-30"} />
-        <Dialog.Title>Deactivate account</Dialog.Title>
-        <Dialog.Description>
-          This will permanently deactivate your account
-        </Dialog.Description>
-
-        <p>
-          Are you sure you want to deactivate your account? All of your data
-          will be permanently removed. This action cannot be undone.
-        </p>
-
-        <button onClick={() => setIsOpen(false)}>Deactivate</button>
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
-      </Dialog>
-      <main>
-        <div>
-          <Button onClick={() => setIsOpen(!isOpen)}>
-            hello there my friend
-          </Button>
-        </div>
-        <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-md w-full space-y-8">
-            <div>
-              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                {state == "EDIT" ? (
-                  <div>Edit Your Name</div>
-                ) : (
-                  <div>Create Your new Name</div>
-                )}
-              </h2>
-            </div>
-            <form className="mt-8 space-y-6">
-              <input type="hidden" name="remember" defaultValue="true" />
-              <div className="rounded-md shadow-sm -space-y-px">
-                <div>
-                  <label htmlFor="name" className="sr-only">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    name="email"
-                    type="text"
-                    defaultValue={state === "EDIT" ? response.name : ""}
-                    required
-                    onChange={(event) => {
-                      setName(event.target.value);
-                    }}
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Name"
-                  />
-                </div>
-                {/* <div>
-                  <label htmlFor="password" className="sr-only">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Password"
-                  />
-                </div> */}
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  onClick={handleSubmission}
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                    {/* <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" /> */}
-                  </span>
-                  {state == "EDIT" ? (
-                    <span>Save Changes</span>
-                  ) : (
-                    <span>Save new Name</span>
-                  )}
-                </button>
-              </div>
-            </form>
+    <div className="flex my-20">
+      <form className="w-full max-w-lg">
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              First Name
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder="Jane"
+              defaultValue={state === "EDIT" ? name : ""}
+              required
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+            {/* <p className="text-red-500 text-xs italic">
+              Please fill out this field.
+            </p> */}
           </div>
+          <div className="w-full md:w-1/2 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-last-name"
+            >
+              Last Name
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-last-name"
+              type="text"
+              placeholder="Doe"
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Location
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-password"
+              type="text"
+              placeholder="Location"
+              onChange={(event) => {
+                setLocation(event.target.value);
+              }}
+              defaultValue={state === "EDIT" ? location : ""}
+            />
+            {/* <p className="text-gray-600 text-xs italic">
+              Make it as long and as crazy as you d like
+            </p> */}
+          </div>
+        </div>
+
+        <div>
           <button
-            onClick={() => {
-              Auth.signOut();
-            }}
+            type="submit"
+            onClick={handleSubmission}
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Log Out
+            <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+              {/* <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" /> */}
+            </span>
+            {state == "EDIT" ? (
+              <span>Save Details</span>
+            ) : (
+              <span>Save new Details</span>
+            )}
           </button>
         </div>
-      </main>
-    </>
+      </form>
+    </div>
   );
 };
 
@@ -169,7 +292,6 @@ export async function getServerSideProps({ req }) {
   const SSR = withSSRContext({ req });
   const userInfo = await SSR.Auth.currentAuthenticatedUser();
   try {
-    console.log(userInfo);
     const results = await SSR.API.graphql({
       query: getOphthalmologist,
       variables: {
@@ -177,7 +299,6 @@ export async function getServerSideProps({ req }) {
       },
       authMode: "AMAZON_COGNITO_USER_POOLS",
     });
-    console.log(results.data.getOphthalmologist);
 
     if (results.data.getOphthalmologist) {
       return {
@@ -185,20 +306,51 @@ export async function getServerSideProps({ req }) {
           status: "EDIT",
           response: results.data.getOphthalmologist,
           accountId: userInfo.attributes.sub,
-        },
-      };
-    } else {
-      return {
-        props: {
-          status: "ADD",
-          accountId: userInfo.attributes.sub,
+          accountType: "O",
         },
       };
     }
   } catch (e) {
     return {
       props: {
-        stats: "ERROR",
+        status: "ERROR",
+      },
+    };
+  }
+
+  try {
+    console.log(userInfo);
+    const results = await SSR.API.graphql({
+      query: getUser,
+      variables: {
+        id: userInfo.attributes.sub,
+      },
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    });
+
+    if (results.data.getUser) {
+      return {
+        props: {
+          status: "EDIT",
+          response: results.data.getUser,
+          accountId: userInfo.attributes.sub,
+          accountType: "P",
+        },
+      };
+    } else {
+      return {
+        props: {
+          status: "ADD",
+          response: results.data.getUser,
+          accountId: userInfo.attributes.sub,
+          accountType: "P",
+        },
+      };
+    }
+  } catch (e) {
+    return {
+      props: {
+        status: "ERROR",
       },
     };
   }

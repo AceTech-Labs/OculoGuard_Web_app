@@ -1,41 +1,40 @@
-type Record
-  @model
-  @auth(
-    rules: [
-      { allow: private }
-      { allow: owner }
-      {
-        allow: groups
-        groups: ["us-east-1_oEs5LyGNF_Google"]
-        operations: [read, create, update, delete]
-      }
-    ]
-  ) {
+type S3Object @model @auth(rules: [{allow: public}, {allow: private}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  bucket: String
+  region: String
+  key: String
+}
+
+enum PredictionTypes {
+  PROGNOSIS
+  DIABETICRETINOPATHY
+  MACULOEDEMA
+  GLAUCOMA
+}
+
+type Record @model @auth(rules: [{allow: public}, {allow: private}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
   id: ID!
   userID: ID! @index(name: "byUser")
+  details: String
+  diseaseType: PredictionTypes
+  isVerified: Boolean
+  verifiedBy: String
+  S3Object: S3Object @hasOne
 }
 
-type User
-  @model
-  @auth(
-    rules: [
-      { allow: owner }
-      { allow: private }
-      {
-        allow: groups
-        groups: ["us-east-1_oEs5LyGNF_Google"]
-        operations: [read, create, update, delete]
-      }
-    ]
-  ) {
+type User @model @auth(rules: [{allow: public}, {allow: private}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
   id: ID!
   name: String
+  age: Int
   ophthalmologistID: ID @index(name: "byOphthalmologist")
   Records: [Record] @hasMany(indexName: "byUser", fields: ["id"])
+  address: String
 }
 
-type Ophthalmologist @model @auth(rules: [{ allow: owner }]) {
+type Ophthalmologist @model @auth(rules: [{allow: public}, {allow: private}, {allow: groups, groups: ["us-east-1_oEs5LyGNF_Google"], operations: [read, create, update, delete]}]) {
   id: ID!
   name: String
   Users: [User] @hasMany(indexName: "byOphthalmologist", fields: ["id"])
+  location: String
 }
+ 

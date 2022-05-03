@@ -26,9 +26,18 @@
     }
   },
   "api": {
-    "oculoguard": {
+    "OculoGuard": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "oculoguard2251e9ec",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
@@ -51,14 +60,6 @@
           ]
         }
       }
-    }
-  },
-  "function": {},
-  "storage": {
-    "recordimages": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
     }
   }
 }
