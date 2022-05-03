@@ -13,23 +13,10 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "oculoguard": {
+        "OculoGuard": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
-        },
-        "diabeticPredictions": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        }
-    },
-    "function": {
-        "oculoprediction": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
         }
     }
 }

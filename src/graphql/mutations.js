@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createS3Object = /* GraphQL */ `
+  mutation CreateS3Object(
+    $input: CreateS3ObjectInput!
+    $condition: ModelS3ObjectConditionInput
+  ) {
+    createS3Object(input: $input, condition: $condition) {
+      id
+      bucket
+      region
+      key
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateS3Object = /* GraphQL */ `
+  mutation UpdateS3Object(
+    $input: UpdateS3ObjectInput!
+    $condition: ModelS3ObjectConditionInput
+  ) {
+    updateS3Object(input: $input, condition: $condition) {
+      id
+      bucket
+      region
+      key
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteS3Object = /* GraphQL */ `
+  mutation DeleteS3Object(
+    $input: DeleteS3ObjectInput!
+    $condition: ModelS3ObjectConditionInput
+  ) {
+    deleteS3Object(input: $input, condition: $condition) {
+      id
+      bucket
+      region
+      key
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createRecord = /* GraphQL */ `
   mutation CreateRecord(
     $input: CreateRecordInput!
@@ -9,12 +63,27 @@ export const createRecord = /* GraphQL */ `
     createRecord(input: $input, condition: $condition) {
       id
       userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+      recordS3ObjectId
     }
   }
 `;
@@ -26,12 +95,27 @@ export const updateRecord = /* GraphQL */ `
     updateRecord(input: $input, condition: $condition) {
       id
       userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+      recordS3ObjectId
     }
   }
 `;
@@ -43,12 +127,27 @@ export const deleteRecord = /* GraphQL */ `
     deleteRecord(input: $input, condition: $condition) {
       id
       userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+      recordS3ObjectId
     }
   }
 `;
@@ -60,27 +159,43 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -92,27 +207,43 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -124,27 +255,43 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -160,23 +307,28 @@ export const createOphthalmologist = /* GraphQL */ `
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -192,23 +344,28 @@ export const updateOphthalmologist = /* GraphQL */ `
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -224,23 +381,28 @@ export const deleteOphthalmologist = /* GraphQL */ `
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;

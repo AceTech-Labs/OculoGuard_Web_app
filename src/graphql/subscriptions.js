@@ -1,219 +1,372 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateRecord = /* GraphQL */ `
-  subscription OnCreateRecord($owner: String) {
-    onCreateRecord(owner: $owner) {
+export const onCreateS3Object = /* GraphQL */ `
+  subscription OnCreateS3Object {
+    onCreateS3Object {
       id
-      userID
+      bucket
+      region
+      key
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+    }
+  }
+`;
+export const onUpdateS3Object = /* GraphQL */ `
+  subscription OnUpdateS3Object {
+    onUpdateS3Object {
+      id
+      bucket
+      region
+      key
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteS3Object = /* GraphQL */ `
+  subscription OnDeleteS3Object {
+    onDeleteS3Object {
+      id
+      bucket
+      region
+      key
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateRecord = /* GraphQL */ `
+  subscription OnCreateRecord {
+    onCreateRecord {
+      id
+      userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      recordS3ObjectId
     }
   }
 `;
 export const onUpdateRecord = /* GraphQL */ `
-  subscription OnUpdateRecord($owner: String) {
-    onUpdateRecord(owner: $owner) {
+  subscription OnUpdateRecord {
+    onUpdateRecord {
       id
       userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+      recordS3ObjectId
     }
   }
 `;
 export const onDeleteRecord = /* GraphQL */ `
-  subscription OnDeleteRecord($owner: String) {
-    onDeleteRecord(owner: $owner) {
+  subscription OnDeleteRecord {
+    onDeleteRecord {
       id
       userID
+      details
+      diseaseType
+      isVerified
+      verifiedBy
+      S3Object {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
+      recordS3ObjectId
     }
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($owner: String) {
-    onCreateUser(owner: $owner) {
+  subscription OnCreateUser {
+    onCreateUser {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($owner: String) {
-    onUpdateUser(owner: $owner) {
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($owner: String) {
-    onDeleteUser(owner: $owner) {
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
       name
+      age
       ophthalmologistID
       Records {
         items {
           id
           userID
+          details
+          diseaseType
+          isVerified
+          verifiedBy
+          S3Object {
+            id
+            bucket
+            region
+            key
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
+          recordS3ObjectId
         }
         nextToken
         startedAt
       }
+      address
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onCreateOphthalmologist = /* GraphQL */ `
-  subscription OnCreateOphthalmologist($owner: String) {
-    onCreateOphthalmologist(owner: $owner) {
+  subscription OnCreateOphthalmologist {
+    onCreateOphthalmologist {
       id
       name
       Users {
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onUpdateOphthalmologist = /* GraphQL */ `
-  subscription OnUpdateOphthalmologist($owner: String) {
-    onUpdateOphthalmologist(owner: $owner) {
+  subscription OnUpdateOphthalmologist {
+    onUpdateOphthalmologist {
       id
       name
       Users {
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onDeleteOphthalmologist = /* GraphQL */ `
-  subscription OnDeleteOphthalmologist($owner: String) {
-    onDeleteOphthalmologist(owner: $owner) {
+  subscription OnDeleteOphthalmologist {
+    onDeleteOphthalmologist {
       id
       name
       Users {
         items {
           id
           name
+          age
           ophthalmologistID
+          Records {
+            nextToken
+            startedAt
+          }
+          address
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
       }
+      location
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
