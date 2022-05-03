@@ -1,6 +1,6 @@
 projects:
-  oculoguard:
-    schemaPath: src/graphql/schema.json
+  OculoGuard:
+    schemaPath: amplify/backend/api/OculoGuard/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -10,6 +10,9 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
+        region: us-east-1
+        apiId: null
+        maxDepth: 4
 extensions:
   amplify:
     version: 3
